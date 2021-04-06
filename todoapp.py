@@ -1,6 +1,9 @@
 from flask import Flask, render_template
+from config import Config
+from forms import AddTaskForm
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
 @app.route('/')
 
@@ -8,16 +11,19 @@ def index():
 
     todo_list_items = [
         {
-            'person': 'Wilson',
+            'email': 'wilson@email.com',
             'task': 'take out trash'
         },
         {
-            'person': 'Wilson',
+            'email': 'wilson@email.com',
             'task': 'wash dishes'
         }
     ]
 
-    return render_template('index.html', items=todo_list_items)
+    form = AddTaskForm()
+
+    return render_template('index.html', items=todo_list_items, form=form)
+
 
 # @app.route('/submit')
 
