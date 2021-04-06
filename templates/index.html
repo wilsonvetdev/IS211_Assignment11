@@ -10,7 +10,7 @@
         <title>To-Do List App</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
     </head>
 
     <body>
@@ -27,19 +27,9 @@
 
         <div>
 
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-
             <h1>Add a Task</h1>
 
-            <form action="" method="post" novalidate>
+            <form action="/submit" method="post" novalidate>
                 {{ form.hidden_tag() }}
                 <p>
                     {{ form.email.label }}<br>
@@ -62,22 +52,33 @@
                 <p>{{ form.submit() }}</p>
             </form>
 
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
         </div>
 
-        <table>
-            <tr>
-                <th>Point of Contact</th>
-                <th>Task</th>
-                <th>Actions</th>
-            </tr>
-            
-            {% for item in items %}
-            <tr>
-                <td>{{ item.email }}</td>
-                <td>{{ item.task }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div>
+            <table>
+                <tr>
+                    <th>Point of Contact</th>
+                    <th>Task</th>
+                </tr>
+                
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.task }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
 
         <script src="" async defer></script>
     </body>

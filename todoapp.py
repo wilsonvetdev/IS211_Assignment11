@@ -5,11 +5,7 @@ from forms import AddTaskForm
 app = Flask(__name__)
 app.config.from_object(Config)
 
-@app.route('/', methods=['GET', 'POST'])
-
-def index():
-
-    todo_list_items = [
+todo_list_items = [
         {
             'email': 'wilson@email.com',
             'task': 'take out trash'
@@ -20,16 +16,25 @@ def index():
         }
     ]
 
-    form = AddTaskForm()
+@app.route('/', methods=['GET', 'POST'])
 
-    if form.validate_on_submit():
-        flash(f'Adding task name: {form.task_name.data} for {form.email.data}.')
-        return redirect('/')
+def index():
+    
+    form = AddTaskForm()
 
     return render_template('index.html', items=todo_list_items, form=form)
 
+@app.route('/submit', methods=['GET', 'POST'])
 
-# @app.route('/submit')
+def submit():
+    form = AddTaskForm()
+
+    if form.validate_on_submit():
+        flash(f'Adding task: "{form.task_name.data}" for {form.email.data}.')
+        data = form
+        return render_template('index.html', items=todo_list_items, form=form, data=data)
+    else: 
+        return render_template('index.html', items=todo_list_items, form=form)
 
 # @app.route('/clear')
 
