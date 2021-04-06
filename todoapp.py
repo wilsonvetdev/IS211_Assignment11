@@ -18,6 +18,7 @@ todo_list_items = [
         }
     ]
 
+
 @app.route('/', methods=['GET', 'POST'])
 
 def index():
@@ -36,27 +37,22 @@ def submit():
 
     if form.validate_on_submit():
         flash(f'Adding task: "{form.task_name.data}" for {form.email.data}.')
-        data = form
         new_item = {
             'email': form.email.data,
             'task': form.task_name.data,
             'priority': form.priority.data
         }
         todo_list_items.append(new_item)
-        render_template('index.html', items=todo_list_items, form=form, clear_form=clear_form, data=data)
         return redirect('/')
     else: 
         return render_template('index.html', items=todo_list_items, clear_form=clear_form, form=form)
 
 
-@app.route('/clear', methods=['POST'])
+@app.route('/clear')
 
 def clear():
     todo_list_items.clear()
-    form = AddTaskForm()
-    clear_form = ClearTasksForm()
 
-    render_template('index.html', items=todo_list_items, form=form, clear_form=clear_form)
     return redirect('/')
 
 if __name__ == '__main__':

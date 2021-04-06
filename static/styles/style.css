@@ -19,3 +19,11 @@ table {
 h1 {
     color: teal;
 }
+
+ul {
+    white-space: nowrap;
+}
+
+li {
+    display: inline-block;
+}

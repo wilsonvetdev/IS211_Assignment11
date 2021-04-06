@@ -50,19 +50,21 @@
                 <p>{{ form.submit() }}</p>
             </form>
 
-            <form action="/clear" method="post" novalidate>
+            <form action="/clear" method="" novalidate>
                 <p>{{ clear_form.submit() }}</p>
             </form>
 
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
+            <div>
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
             {% endif %}
             {% endwith %}
+            </div>
 
         </div>
 
@@ -83,9 +85,9 @@
                     <td>{{ item.email }}</td>
                     <td>{{ item.task }}</td>
                     <td>{{ item.priority }}</td>
-
                 </tr>
                 {% endfor %}
+
             </table>
         </div>
 
