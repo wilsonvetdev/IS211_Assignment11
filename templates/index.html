@@ -23,7 +23,7 @@
 
         <div>
 
-            <h1>Add a Task</h1>
+            <h1>Add an Item</h1>
 
             <form action="/submit" method="post" novalidate>
                 {{ form.hidden_tag() }}
@@ -31,6 +31,7 @@
                     {{ form.email.label }}<br>
                     {{ form.email(size=32) }}
                     {% for error in form.email.errors %}
+                    <br>
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>
@@ -38,6 +39,7 @@
                     {{ form.task_name.label }}<br>
                     {{ form.task_name(size=32) }}
                     {% for error in form.task_name.errors %}
+                    <br>
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>
@@ -69,18 +71,20 @@
                 <tr>
                     <th>Point of Contact</th>
                     <th>Task</th>
+                    <th>Priority</th>
                 </tr>
                 
                 {% for item in items %}
                 <tr>
                     <td>{{ item.email }}</td>
                     <td>{{ item.task }}</td>
+                    <td>{{ item.priority }}</td>
+
                 </tr>
                 {% endfor %}
             </table>
         </div>
 
-        <script src="" async defer></script>
     </body>
 
 </html>

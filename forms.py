@@ -4,7 +4,7 @@ from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email
 
 class AddTaskForm(FlaskForm):
-    task_name = StringField('Task Name', validators=[DataRequired()])
+    task_name = StringField('To Do Item', validators=[DataRequired()])
     email = EmailField('Email', validators=[DataRequired(), Email()])
     priority = SelectField('Priority', choices=['Low', 'Medium', 'High'], validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Add To Do Item')
