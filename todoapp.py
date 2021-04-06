@@ -1,11 +1,23 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 
-def hello_world():
-    return 'Hello World! This is a To-Do List app!'
+def index():
+
+    todo_list_items = [
+        {
+            'person': 'Wilson',
+            'task': 'take out trash'
+        },
+        {
+            'person': 'Wilson',
+            'task': 'wash dishes'
+        }
+    ]
+
+    return render_template('index.html', items=todo_list_items)
 
 # @app.route('/submit')
 
