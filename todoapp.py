@@ -1,11 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect
 from config import Config
 from forms import AddTaskForm
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 
 def index():
 
@@ -21,6 +21,10 @@ def index():
     ]
 
     form = AddTaskForm()
+
+    if form.validate_on_submit():
+        flash(f'Adding task name: {form.task_name.data} for {form.email.data}.')
+        return redirect('/')
 
     return render_template('index.html', items=todo_list_items, form=form)
 
