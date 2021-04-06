@@ -8,3 +8,6 @@ class AddTaskForm(FlaskForm):
     email = EmailField('Email', validators=[DataRequired(), Email()])
     priority = SelectField('Priority', choices=['Low', 'Medium', 'High'], validators=[DataRequired()])
     submit = SubmitField('Add To Do Item')
+
+class ClearTasksForm(FlaskForm):
+    submit = SubmitField('Clear To-Do List')
